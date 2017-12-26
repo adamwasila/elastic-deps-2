@@ -13,3 +13,16 @@ repositories {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId 'org.wasila.elasticdeps2'
+            artifactId 'library2'
+            version '1.0-SNAPSHOT'
+
+            from components.java
+        }
+    }
+}
+
