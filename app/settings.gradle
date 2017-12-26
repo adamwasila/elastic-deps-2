@@ -1,13 +1,13 @@
 rootProject.name = 'app'
 
-includeBuild('../library1') {
-    dependencySubstitution {
-        substitute module('org.wasila.elasticdeps2:library1') with project(':')
-    }
+file("../libraries").eachDir {
+    libDir ->
+        if (!libDir.name.startsWith("!")) {
+            includeBuild(libDir) {
+                dependencySubstitution {
+                    substitute module("org.wasila.elasticdeps2:${libDir.name}") with project(':')
+                }
+            }
+        }
 }
 
-includeBuild('../library2') {
-    dependencySubstitution {
-        substitute module('org.wasila.elasticdeps2:library2') with project(':')
-    }
-}
